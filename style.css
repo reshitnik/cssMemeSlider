@@ -6,6 +6,7 @@ body {
     font-family: sans-serif;
     background-color: white;
     min-width: 500px;
+    max-width: 1024;
 }
 
 html {
@@ -14,7 +15,7 @@ html {
 
 .container {
     margin: 0 auto;
-    max-width: 1440px;
+    max-width: 1024px;
 }
 
 p{
@@ -24,97 +25,132 @@ p{
 
 /* my style*/
 
+.container {
+    padding: 5%;
+}
+
 .tabs{
-    width: 440px;
-    height: 330px;
+    max-width: 50%;
     margin: 0 auto;
     background-color: blueviolet;
-    padding: 20px 20px;
-    border-radius: 15px;
+    padding: 4% 4%;
+    border-radius: 3%;
     display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap-reverse;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.tabs-content--descr{
+    display: none;
+    order: 1;
 }
 
-#tab-btn-1{
-    align-self: baseline;
+#tab-btn-1:checked~.descr1,
+#tab-btn-2:checked~.descr2,
+#tab-btn-3:checked~.descr3,
+#tab-btn-4:checked~.descr4,
+#tab-btn-5:checked~.descr5{
+    display: block;
+    animation: fadeIn 2s linear;
 }
+
+@keyframes fadeIn {
+    100% {opacity: 1;
+    }
+    0% {opacity: 0;
+    };
+  }
 
 .tabs-content {
-    display: none;
-    /* position: absolute; */
-
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 1s linear;
 }
+
+
+
 
 #tab-btn-1:checked~#content-1,
 #tab-btn-2:checked~#content-2,
 #tab-btn-3:checked~#content-3,
 #tab-btn-4:checked~#content-4,
 #tab-btn-5:checked~#content-5{
-display: block;
-    
+    height: auto;
+    opacity: 1;
+    transition: all 1s linear;
 
 }
 
 .tabs-content--img {
-    background-color: white;
-    border-radius: 10px;
-    width: 400px;
-    height: 270px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    margin-bottom: 10px;
+    width: 100%;
 }
 
-.img1{
-    background-image: url('/img/slide1.jpg');
-}
-
-.img2{
-    background-image: url('/img/slide2.jpg');
-}
-
-.img3{
-    background-image: url('/img/slide3.jpg');
-}
-
-.img4{
-    background-image: url('/img/slide4.jpg');
-}
-
-.img5{
-    background-image: url('/img/slide5.jpg');
+img{
+    width: 100%;
 }
 
 .tabs-content--descr{
     color: white;
+    margin-right:auto;
+    font-size: 0.6em;
+    padding-top: 5px;
 
 }
 
-/* #tab-btn-1{
-    right: 95px;
-}
-
-#tab-btn-2{
-    right: 75px;
-}
-
-#tab-btn-3{
-    right: 55px;
-}
-
-#tab-btn-4{
-    right: 35px;
-}
-
-#tab-btn-5{
-    right: 15px;
-}
-
-.radiobtn {
-    position: absolute;
-    bottom: 15px;
+label {
     cursor: pointer;
-    z-index: 100;
-} */
+    margin-right:5px ;
+    order: 2;
+}
+
+.radiobtn__label__bg {
+    padding: 5px;
+}
+
+.radiobtn__label__bg--circle{
+    width: 0.7em;
+    height: 0.7em;
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.radiobtn{
+    display: none;
+}
+
+label:hover .radiobtn__label__bg--circle{
+background-color: blueviolet;
+transition: all 0.3s ease-in-out;
+}
+
+#tab-btn-1:checked~.label1 .radiobtn__label__bg--circle,
+#tab-btn-2:checked~.label2 .radiobtn__label__bg--circle,
+#tab-btn-3:checked~.label3 .radiobtn__label__bg--circle,
+#tab-btn-4:checked~.label4 .radiobtn__label__bg--circle,
+#tab-btn-5:checked~.label5 .radiobtn__label__bg--circle{
+    background-color:red;
+    transition: all .3s ease-in-out;
+}
+
+@media(max-width:700px){
+    .tabs-content--descr{
+        order: 2;
+    }
+    .label1 {
+        margin-left: 20%;}
+
+    .label5 {
+        margin-right: 20%;}
+
+    .tabs-content--descr {
+        margin: 0 auto;
+    }
+
+    .radiobtn__label__bg--circle {
+        width: 0.5em;
+        height: 0.5em;
+    }
+
+}
